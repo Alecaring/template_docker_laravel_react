@@ -26,51 +26,81 @@
 <body>
     <div id="app">
 
-        <header class="navbar position-fixed top-0 w-100 z-3 bg-white flex-md-nowrap p-3">
-            <div class="row justify-content-between">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/"><strong>A</strong>ntartic</a>
-                <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <header
+            class="d-flex justify-content-between align-items-center position-fixed top-0 w-100 z-3 bg-white flex-md-nowrap p-3">
+            <div class="row justify-content-between align-items-end px-3 w-25">
+                <div class="">
+                    <a class="navbar-brand col-md-3 col-lg-2 me-0 fs-2 fw-light"
+                        href="/"><strong>A</strong>ntartic <span class="text-secondary">/</span></a>
+                    @if (Auth::user())
+                        <small class="">{{ Auth::user()->name }}</small>
+                    @else
+                        <small>Born to be yours</small>
+                    @endif
+                </div>
             </div>
-            <div class="navbar-nav">
-                <div class="nav-item text-nowrap ms-2">
-                    <span>{{ Auth::user()->name }}</span>
-                    <a class="nav-link d-inline ps-3" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+            <div class="w-50 d-flex justify-content-center align-items-center">
+                <ul class="list-group list-group-horizontal pt-2">
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Mac</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>iPhone</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>iPad</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Whatch</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Samsung</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Shop</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Xiaomi</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Support</small></a></li>
+                    <li class="list-group-item border-0"><a
+                            class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover"
+                            href="#"><small>Accessories</small></a></li>
+                </ul>
+            </div>
+            <div class="w-25 pt-2 d-flex justify-content-between align-items-center">
+                <div class="d-flex gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-bag" viewBox="0 0 16 16">
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                    </svg>
+                </div>
+                <div class="ms-2">
+                    @if (Auth::user())
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="pe-4 btn"><small>{{ __('Logout') }}</small></button>
+                        </form>
+                    @else
+                    <div class="d-flex">
+                        <a class="nav-link pe-4 btn" href="{{ route('login') }}"><small>{{ __('Login') }}</small></a>
+                        <a class="nav-link pe-4 btn" href="{{ route('register') }}"><small>{{ __('Register') }}</small></a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </header>
 
-        <div class="container-fluid bg-light p-5">
-            {{-- <div class="row h-100">
-                <!-- Definire solo parte del menu di navigazione inizialmente per poi
-        aggiungere i link necessari giorno per giorno
-        -->
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
-                    <div class="position-sticky pt-3">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('dashboard') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
-                                </a>
-                            </li>
-                        </ul>
+        <div class="container-fluid py-5 px-0">
 
-
-                    </div>
-                </nav>
-
-            </div> --}}
             <main>
                 @yield('content')
             </main>

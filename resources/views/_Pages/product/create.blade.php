@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4 bg-light">
     <h2>Aggiungi Prodotto</h2>
     <hr>
     
