@@ -26,7 +26,7 @@
 <body>
     <div id="app">
 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
+        <header class="navbar position-fixed top-0 w-100 z-3 bg-white flex-md-nowrap p-3">
             <div class="row justify-content-between">
                 <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">BoolPress</a>
                 <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
@@ -37,7 +37,8 @@
             </div>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <span>{{ Auth::user()->name }}</span>
+                    <a class="nav-link d-inline ps-3" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
@@ -49,8 +50,8 @@
             </div>
         </header>
 
-        <div class="container-fluid vh-100">
-            <div class="row h-100">
+        <div class="container-fluid bg-light p-5">
+            {{-- <div class="row h-100">
                 <!-- Definire solo parte del menu di navigazione inizialmente per poi
         aggiungere i link necessari giorno per giorno
         -->
@@ -69,10 +70,10 @@
                     </div>
                 </nav>
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                    @yield('content')
-                </main>
-            </div>
+            </div> --}}
+            <main>
+                @yield('content')
+            </main>
         </div>
 
     </div>
