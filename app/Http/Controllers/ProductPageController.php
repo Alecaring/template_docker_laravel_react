@@ -15,7 +15,21 @@ class ProductPageController extends Controller
     public function index()
     {
         $products = Product::with('products_variant')->get();
-        return view('_Pages.product.index', compact('products'));
+
+        $smartphonesApple = Product::with('products_variant')
+            ->where([
+                'category' => 'smartphone',
+                'brand' => 'Apple'
+            ])
+            ->get();
+        $macApple = Product::with('products_variant')
+            ->where([
+                'category' => 'laptop',
+                'brand' => 'Apple'
+            ])
+            ->get();
+
+        return view('_Pages.product.index', compact('smartphonesApple', 'macApple'));
     }
 
     // create
